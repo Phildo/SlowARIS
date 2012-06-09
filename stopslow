@@ -1,0 +1,4 @@
+#!/bin/bash
+sudo ipfw del 1
+sudo ipfw del 2
+sudo -k

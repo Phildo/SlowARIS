@@ -1,0 +1,13 @@
+#!/bin/bash
+if [ "$1" == "qa" ]; then
+  IP=50.57.139.229
+elif [ "$1" == "dev" ]; then
+  IP=50.56.80.147
+else
+  IP=50.57.138.30
+fi
+sudo ipfw add 1 pipe 1 ip from $IP to any in
+sudo ipfw add 2 pipe 2 ip from any to $IP out
+sudo ipfw pipe 1 config bw 150kbit/s delay 1000ms plr 0.1
+sudo ipfw pipe 2 config bw 150kbit/s delay 1000ms plr 0.1
+sudo -k
